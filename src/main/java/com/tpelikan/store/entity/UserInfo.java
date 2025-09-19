@@ -2,6 +2,8 @@ package com.tpelikan.store.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -21,7 +23,10 @@ public class UserInfo {
 	private String password;
 	private String firstName;
 	private String lastName;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date validTo;
 	
 
 }
+   
