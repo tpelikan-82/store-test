@@ -1,3 +1,0 @@
-insert into Employee (first_name, last_name) values ('Lenik', 'Mazlik');
-insert into Employee (first_name, last_name) values ('Vitek', 'Kvetak');
-insert into Employee (first_name, last_name) values ('Jita', 'Cica');

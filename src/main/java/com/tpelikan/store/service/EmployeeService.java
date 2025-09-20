@@ -1,9 +1,11 @@
 package com.tpelikan.store.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tpelikan.store.entity.Employee;
 import com.tpelikan.store.repo.EmployeeRepo;
@@ -25,7 +27,7 @@ public class EmployeeService {
 	    
  
     public void createEmployee(Employee  employee) {
-    	System.out.println(employee + " " + employee.getEmployeeId());
+    	System.out.println(employee + " ");
     	employeeRepo.save(employee);
     }
     
@@ -40,5 +42,15 @@ public class EmployeeService {
     public void deleteEmployeeById(int id) {
     	employeeRepo.deleteById(id);
     }
+
+
+	public Employee addEmployee(Employee employee, MultipartFile imageFile) throws IOException {
+		employee.setImageName(imageFile.getOriginalFilename());
+		employee.setImageType(imageFile.getContentType());
+		employee.setImageDate(imageFile.getBytes());
+		return employeeRepo.save(employee);
+	}
+    
+    
 	
 }
