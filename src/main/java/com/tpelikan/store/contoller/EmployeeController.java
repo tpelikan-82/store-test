@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,5 +75,16 @@ public class EmployeeController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@GetMapping("/employee/{employeeId}/image")
+	public ResponseEntity<byte[]> getImagByEmployeeId(@PathVariable int employeeId) {
+		System.out.println("employee id:" +  employeeId);
+		Employee employee = employeeService.getEmployee(employeeId);
+		byte[] imageFile = employee.getImageDate();
+		
+		return ResponseEntity.ok().contentType(MediaType.valueOf(employee.getImageType())).body(imageFile);
+		
+	}
+	
     
 }
