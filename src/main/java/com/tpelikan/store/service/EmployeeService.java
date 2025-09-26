@@ -50,6 +50,20 @@ public class EmployeeService {
 		employee.setImageDate(imageFile.getBytes());
 		return employeeRepo.save(employee);
 	}
+
+
+	public Employee updateEmployee(Employee employee, MultipartFile imageFile) throws IOException {
+		employee.setImageDate(imageFile.getBytes());
+		employee.setImageName(imageFile.getOriginalFilename());
+		employee.setImageType(imageFile.getContentType());
+		return employeeRepo.save(employee);		
+	}
+
+
+	public List<Employee> searchEmployees(String keyword) {
+		// TODO Auto-generated method stub
+		return employeeRepo.searchEmployees(keyword);
+	}
     
     
 	
